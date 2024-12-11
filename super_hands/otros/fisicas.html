@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple Collision Example</title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aframe-physics-system@4.2.0/dist/aframe-physics-system.min.js"></script>
+  </head>
+  <body>
+    <a-scene physics="debug: true">
+        <a-entity>
+            <a-entity camera look-controls position="10 0 5"></a-entity>
+            <a-entity sphere-collider="objects: a-box" super-hands hand-controls="hand: left"></a-entity>
+            <a-entity sphere-collider="objects: a-box" super-hands hand-controls="hand: right"></a-entity>
+    
+    
+          </a-entity>
+      <!-- Plane where the cubes will rest -->
+      <a-plane position="0 0 -5" rotation="-90 0 0" width="10" height="10" color="#7BC8A4"></a-plane>
+
+      <!-- First Cube (Dynamic Body) -->
+      <a-box position="0 2 -5" color="red" width="1" height="1" depth="1" dynamic-body="mass: 5"></a-box>
+
+      <!-- Second Cube (Dynamic Body) -->
+      <a-box position="2 3 -5" color="blue" width="1" height="1" depth="1" dynamic-body="mass: 5"></a-box>
+    </a-scene>
+  </body>
+</html>
