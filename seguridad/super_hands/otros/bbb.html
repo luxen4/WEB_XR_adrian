@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Eliminar Elementos por Color</title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+  </head>
+  <body>
+    <a-scene>
+
+
+      <a-sphere color="blue" radius="0.5" position="0 5 -5"></a-sphere>
+      <a-sphere color="blue" radius="0.5" position="0 4 -5"></a-sphere>  
+      <a-sphere color="blue" radius="0.5" position="0 3 -5"></a-sphere>
+      <a-sphere color="blue" radius="0.5" position="0 2 -5"></a-sphere>
+      <a-sphere color="orange" radius="0.5" position="0 1 -5"></a-sphere>
+
+      <a-sphere color="red" radius="0.5" position="0 0 -5"></a-sphere>
+      <a-sphere color="orange" radius="0.5" position="0 -1 -5"></a-sphere>
+
+
+      <a-sphere color="orange" radius="0.5" position="0 -2 -5"></a-sphere>
+      <a-sphere color="orange" radius="0.5" position="0 -3 -5"></a-sphere>
+      <a-sphere color="orange" radius="0.5" position="0 -4 -5"></a-sphere>
+      
+      
+      
+      <a-sphere color="red" radius="0.5" position="2 2 -5"></a-sphere>
+      <a-sphere color="red" radius="0.5" position="3 2 -5"></a-sphere>
+      <a-sphere color="red" radius="0.5" position="4 2 -5"></a-sphere>
+    </a-scene>
+
+
+    <script>
+      
+    function eliminarEsferasVertical(){
+          // Obtener todas las esferas en la escena
+          const spheres = document.querySelectorAll('a-sphere');
+
+          for (let i = 1; i < spheres.length -2; i++) {
+
+            // Obtener el atributo 'position' y 'color'
+            const position1 = spheres[i-1].getAttribute('position'); //alert(position1.y);
+            const color1 = spheres[i-1].getAttribute('color');
+
+            const position2 = spheres[i].getAttribute('position');
+            const color2 = spheres[i].getAttribute('color');
+            
+            const position3 = spheres[i + 1].getAttribute('position');
+            const color3 = spheres[i + 1].getAttribute('color');
+
+            const position4 = spheres[i + 2].getAttribute('position');
+            const color4 = spheres[i + 2].getAttribute('color');
+
+
+            // Acceder a las coordenadas X, Y, Z de cada posición
+            const { x: x1, y: y1, z: z1 } = position1; //alert(x1)
+            const { x: x2, y: y2, z: z2 } = position2;
+            const { x: x3, y: y3, z: z3 } = position3;
+            const { x: x4, y: y4, z: z4 } = position4;
+
+
+
+            // Quiero las de una fila ---> La 0 y les saco el color
+            // Imprimir las coordenadas de cada esfera
+            //alert(`Posición en la esfera ${i-1}: x=${x1}, y=${y1}, z=${z1}, color=${color1}`);
+            //alert(`Posición en la esfera ${i}: x=${x2}, y=${y2}, z=${z2}, color=${color2}`);
+            //alert(`Posición en la esfera ${i + 1}: x=${x3}, y=${y3}, color=${color3}`);
+            //alert(`Posición en la esfera ${i + 2}: x=${x4}, y=${y4}, color=${color4}`);
+
+
+
+            // Si las tres esferas consecutivas tienen el mismo color, las eliminamos
+            if (color1 === color2 && color2 === color3 && color3 === color4) {
+              spheres[i - 1].remove();
+              spheres[i].remove();
+              spheres[i + 1].remove();
+              spheres[i + 2].remove();
+            }
+          }
+
+    }
+
+
+// Función para eliminar esferas consecutivas con el mismo color
+    function eliminarEsferasConsecutivas() {
+
+      const elementos = document.querySelectorAll('a-sphere');      // Seleccionamos todas las esferas de la escena
+      
+      // Recorrer todas las esferas en orden inverso
+      for (let i = elementos.length - 1; i >= 2; i--) {
+        const color1 = elementos[i].getAttribute('color');
+        const color2 = elementos[i - 1].getAttribute('color');
+        const color3 = elementos[i - 2].getAttribute('color');
+
+        // Si las tres esferas consecutivas tienen el mismo color, las eliminamos
+        if (color1 === color2 && color2 === color3) {
+          elementos[i].remove();
+          elementos[i - 1].remove();
+          elementos[i - 2].remove();
+        }
+      }
+    }
+
+
+      //eliminarEsferasVertical();
+      //eliminarEsferasConsecutivas();
+
+
+
+    </script>
+
+
+
+
+  </body>
+</html>
+
+  </body>
+</html>
+
+
+<script>
+
+    
+   
+  </script>
+
+
+<!--
+  <button id="eliminarAzul">Eliminar Elementos Azules</button>
+
+  // Evento de clic en el botón
+  document.getElementById('eliminarAzul').addEventListener('click', function () {
+    eliminarElementosAzules();
+  });-->
+
+
+
+
+  <script>
+    /*
+    // Función para eliminar elementos de color azul
+    function eliminarElementosHorizontal(color) {
+
+      // Seleccionamos todas las esferas de la escena
+      const elementos = document.querySelectorAll('a-sphere');
+      
+      // Iteramos sobre cada esfera
+      elementos.forEach(function(elemento) {
+        // Verificamos el color del elemento
+        if (elemento.getAttribute('color') === color) {
+          // Si el color es azul, lo eliminamos
+          elemento.remove();
+        }
+      });
+    }
+    color = "orange"
+    eliminarElementosHorizontal(color);
+*/
+  </script>

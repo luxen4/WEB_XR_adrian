@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Colisiones de cubos en A-Frame</title>
+
+
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-animation-component@3.2.1/dist/aframe-animation-component.min.js"></script>
+
+    <script src="https://unpkg.com/aframe-event-set-component@^4.0.0/dist/aframe-event-set-component.min.js"></script>
+    <script src="https://unpkg.com/super-hands@^3.0.3/dist/super-hands.min.js"></script>
+    <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v3.13.1/dist/aframe-extras.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+
+    <script src="script.js"></script>
+
+
+    <script>
+      var yaSumado_100puntos = false;
+      var yaSumado_70puntos = false;
+      var yaSumado_50puntos = false;
+      var yaSumado_20puntos = false;
+
+
+      // Función que se ejecuta cuando ocurre la colisión con la caja negra
+      function onCollide(event) {
+        if (event.detail.body.el.id === 'premio_100' && yaSumado_100puntos == false) {
+          alert("¡La pelota ha colisionado con la caja de 100 puntos!");
+          yaSumado_100puntos =true;
+        }
+
+
+        if (event.detail.body.el.id === 'premio_70' && yaSumado_70puntos == false) {
+          alert("¡La pelota ha colisionado con la caja de 70 puntos!");
+          yaSumado_70puntos =true;
+        }
+
+        if (event.detail.body.el.id === 'premio_50' && yaSumado_50puntos == false) {
+          alert("¡La pelota ha colisionado con la caja de 50 puntos!");
+          yaSumado_50puntos =true;
+        }
+
+
+        if (event.detail.body.el.id === 'premio_20' && yaSumado_20puntos == false) {
+          alert("¡La pelota ha colisionado con la caja de 20 puntos!");
+          yaSumado_20puntos =true;
+        }
+      }
+    </script>
+
+
+<script>
+  function hacer() {
+    alert("¡Has presionado el botón!");
+}
+</script>
+
+  </head>
+  <body>
+   
+
+    <a-scene physics="gravity: -9.8; restitution: 0.7">
+      <a-asserts><img id="groung" src=""></a-asserts>
+
+        <a-camera position="0 5 15" rotation="0 0 0"></a-camera>
+
+        <!--<a-camera position="0 5 15" rotation="0 0 0" look-controls="enabled: false"></a-camera>-->
+        <input id="myButton" height="100px" width="100px" type="button" title="Play"  onclick="hacer()"  value="Play">
+
+      <!-- Cubo con interacción -->
+      <a-box id="cubo" color="red" position="0 -0.5 0" scale="15 1 10" rotation="-5 2 0" grabbable stretchable droppable static-body>
+        <!-- Animación de rotación cuando se agarra -->
+      </a-box>
+
+      <a-entity  id= "left-hand" sphere-collider="objects: a-box" super-hands hand-controls="hand: left"></a-entity>
+      <a-entity id= "right-hand" sphere-collider="objects: a-box" super-hands hand-controls="hand: right"></a-entity>
+
+      <a-entity id="left-hand" hand-controls="hand: left" super-hands="grab: true"></a-entity>
+      <a-entity id="right-hand" hand-controls="hand: right" super-hands="grab: true"></a-entity>
+
+
+      
+      <a-entity progressive-controls possition="0 0 5"></a-entity>
+
+
+    <!-- Yellow Sphere -->
+    <a-sphere id="amarilla" color="#FFAA00" radius="0.35" position="1 1 4" dynamic-body="linearDamping: 0.5; angularDamping: 0.3; mass: 10"></a-sphere>
+
+
+             <!-- Cubos alrededor del plano -->
+
+      <a-box color="grey" position="-5 0 -5" grabbable static-body></a-box>
+      <a-box color="grey" position="-4 0 -5" grabbable static-body></a-box>
+      <a-box color="black" position="-3 0 -5" grabbable static-body></a-box>
+      
+      <a-box color="grey" position="-2 0 -5" grabbable static-body></a-box>
+      <a-box color="grey" position="-1 0 -5" grabbable static-body></a-box>
+      <a-box color="grey" position="0 0 -5" grabbable static-body></a-box>
+      <a-box color="grey" position="1 0 -5" grabbable static-body></a-box>
+      <a-box color="grey" position="2 0 -5" grabbable static-body></a-box>
+      <a-box color="grey" position="3 0 -5" grabbable static-body></a-box>
+      <a-box color="grey" position="4 0 -5" grabbable static-body></a-box>
+      <a-box color="grey" position="5 0 -5" grabbable static-body></a-box>
+
+      <a-box color="green" position="-5 0 -4" grabbable static-body></a-box>
+      <a-box color="green" position="-5 0 -3" grabbable static-body></a-box>
+      <a-box color="grey" position="-5 0 -2" grabbable static-body></a-box>
+      <a-box color="grey" position="-5 0 -1" grabbable static-body></a-box>
+      <a-box color="grey" position="-5 0 0" grabbable static-body></a-box>
+      <a-box color="grey" position="-5 0 1" grabbable static-body></a-box>
+      <a-box color="grey" position="-5 0 2" grabbable static-body></a-box>
+      <a-box color="grey" position="-5 0 3" grabbable static-body></a-box>
+      <a-box color="grey" position="-5 0 4" grabbable static-body></a-box>
+      <a-box color="grey" position="-5 0 5" grabbable static-body></a-box>
+
+      <a-box color="grey" position="5 0 -5" grabbable static-body></a-box>
+      <a-box color="grey" position="5 0 -4" grabbable static-body></a-box>
+      <a-box color="grey" position="5 0 -3" grabbable static-body></a-box>
+      <a-box color="grey" position="5 0 -2" grabbable static-body></a-box>
+      <a-box color="grey" position="5 0 -1" grabbable static-body></a-box>
+      <a-box color="grey" position="5 0 0" grabbable static-body></a-box>
+      <a-box color="grey" position="5 0 1" grabbable static-body></a-box>
+      <a-box color="grey" position="5 0 2" grabbable static-body></a-box>
+      <a-box color="grey" position="5 0 3" grabbable static-body></a-box>
+      <a-box color="grey" position="5 0 4" grabbable static-body></a-box>
+      <a-box color="grey" position="5 0 5" grabbable static-body></a-box>
+
+
+      <a-box color="grey" position="4 0 5" grabbable static-body></a-box>
+      <a-box color="grey" position="3 0 5" grabbable static-body></a-box>
+      <a-box color="grey" position="2 0 5" grabbable static-body></a-box>
+      <a-box color="grey" position="1 0 5" grabbable static-body></a-box>
+      <a-box color="grey" position="0 0 5" grabbable static-body></a-box>
+      <a-box color="grey" position="-1 0 5" grabbable static-body></a-box>
+      <a-box color="grey" position="-2 0 5" grabbable static-body></a-box>
+      <a-box color="grey" position="-3 0 5" grabbable static-body></a-box>
+      <a-box color="grey" position="-4 0 5" grabbable static-body></a-box>
+      <a-box color="grey" position="-5 0 5" grabbable static-body></a-box>
+
+
+
+
+
+      <a-box id="premio_100" color="green" position="-3 0 -3" grabbable static-body>
+          <a-text value="100 \n puntos" position="-0.5 0.5 2" color="white" scale="2 2 2" text-align="center"></a-text></a-box>
+
+      <a-box id="premio_70"  color="green" position="-1 0 -3" grabbable static-body>
+          <a-text value="70 \n puntos" position="-0.5 0.5 2" color="white" scale="2 2 2" text-align="center"></a-text></a-box>
+
+      <!-- Caja 50 con animación en el eje Z -->
+    <a-box id="premio_50" color="green" position="1 0 -3" grabbable static-body
+    animation="property: position; to: 1 0 3; dur: 2000; loop: true; dir: alternate;">
+    <a-text value="50 \n puntos" position="-0.5 0.5 2" color="white" scale="2 2 2" text-align="center"></a-text>
+  </a-box>
+
+    <!-- Caja con animación en el eje Z -->
+    <a-box id="premio_20" color="green" position="3 0 -3" grabbable static-body
+      animation="property: position; to: 3 0 3; dur: 2000; loop: true; dir: alternate;">
+      <a-text value="20 \n puntos" position="-0.5 0.5 2" color="white" scale="2 2 2" text-align="center"></a-text>
+    </a-box>
+
+      <a-box color="black" position="-4 0 -1" grabbable static-body></a-box>
+      <a-box color="black" position="-2 0 -1" grabbable static-body></a-box>
+      <a-box color="black" position="0 0 -1" grabbable static-body></a-box>
+      <a-box color="black" position="2 0 -1" grabbable static-body></a-box>
+      <a-box color="black" position="4 0 -1" grabbable static-body></a-box>
+
+
+      <a-box color="black" position="-1 0 2" grabbable static-body></a-box>
+      <a-box color="black" position="3 0 2" grabbable static-body>
+
+      </a-box>
+
+    </a-scene>
+
+
+
+
+
+  </body>
+</html>
+
+
+
+<script>
+
+  alert("Entro");
+    // Obtener el cubo
+    const cubo = document.getElementById('cubo');
+
+    var leftHand = document.getElementById('left-hand');
+    var rightHand = document.getElementById('right-hand');
+
+    // Variables para las animaciones
+    var rightHandRotation = 360;
+    var leftHandRotation = -360;
+
+
+
+
+    // Variable para controlar la rotación original
+    const originalRotation = { x: 0, y: 0, z: 0 };
+
+    // Función para aplicar la rotación al cubo
+    function rotateCubeIzda() {
+      cubo.setAttribute('animation', {
+        property: 'rotation',
+        to: '0 0 45',
+        dur: 5000,
+        repeat: 'indefinite',
+        easing: 'linear',
+      });
+    }
+
+    function rotateCubeDerecha() {
+        cubo.setAttribute('animation', {
+          property: 'rotation',
+          to: '0 0 -45',
+          dur: 5000,
+          repeat: 'indefinite',
+          easing: 'linear',
+        });
+      }
+
+
+    // Función para restablecer la rotación al valor inicial
+    function resetRotation() {
+      cubo.setAttribute('animation', {
+        property: 'rotation',
+        to: `${originalRotation.x} ${originalRotation.y} ${originalRotation.z}`,
+        dur: 5000,
+        easing: 'easeInOutQuad',
+      });
+    }
+
+    // Escuchar los eventos de agarrar y soltar
+    cubo.addEventListener('grab-start', () => {
+        var hand = event.detail.hand; // Obtener la mano que agarra el cubo
+
+        //alert(`La mano ${hand.id} agarró el cubo`);
+        if (hand.id === 'left-hand') {
+          //alert('La mano izquierda agarró el cubo');
+            rotateCubeIzda();
+
+
+        } else if (hand.id === 'right-hand') {
+          //alert('La mano derecha agarró el cubo');
+          rotateCubeDerecha();
+        }
+
+    });
+
+    cubo.addEventListener('grab-end', () => {
+      resetRotation();
+    });
+
+  
+
+
+
+
+  </script>
+
+  <script>
+    // Agregar el evento de colisión a la pelota
+    document.querySelector('#amarilla').addEventListener('collide', onCollide);
+  </script>
+
+
+
+
+
+
+
+
+
+  <style>
+    /* Usar CSS para posicionar el botón */
+    #myButton {
+      position: absolute; /* Establece el tipo de posicionamiento */
+      top: 100px;          /* Distancia desde la parte superior de la ventana */
+      left: 50%;           /* Centra el botón horizontalmente */
+      transform: translateX(-50%); /* Ajusta el centro para que quede exactamente centrado */
+    }
+  </style>

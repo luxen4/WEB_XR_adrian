@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Colisiones de cubos en A-Frame</title>
+
+
+    <script src="https://unpkg.com/aframe-event-set-component@^4.0.0/dist/aframe-event-set-component.min.js"></script>
+    <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v3.13.1/dist/aframe-extras.min.js"></script>
+
+ 
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.misc.min.js"></script>
+    <script src="https://unpkg.com/super-hands@^3.0.3/dist/super-hands.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <a-scene physics="gravity: -9.8; restitution: 0.7">
+      <a-asserts>
+        <img id="groung" src="">
+      </a-asserts>
+ 
+
+      <a-sky color="#222"></a-sky>
+      <a-entity star-system></a-entity>
+
+      <a-entity sphere-collider="objects: a-box, a-sphere" super-hands hand-controls="hand: left"></a-entity>
+      <a-entity sphere-collider="objects: a-box, a-sphere" super-hands hand-controls="hand: right"></a-entity>
+
+      <a-entity progressive-controls possition="0 0 5"></a-entity>
+      <a-plane color="#B4B3B4" width="20" height="20" position="0 0 -16" rotation="0 0 0"></a-plane>      <!-- Tablero -->
+
+
+<!-- Entidad que agrupa ambas esferas -->
+<a-entity id="container" grabbable draggable  dynamic-body stretchable droppable position="3 1 -5">
+  
+    <!-- Esfera superior azul -->
+    <a-sphere id="esfera_roja_superior" color="red" radius="1" position="0 2 0">   </a-sphere>
+
+    <!-- Cilindro de en medio-->
+    <a-cylinder id="cilindro_rojo_superior" rotation="0 0 0" radius="1" height="1" material="color: red;" position="0 1.5 0"></a-cylinder>
+
+    <!-- Cilindro de en medio-->
+    <a-cylinder id="cilindro_azul_inferior" rotation="0 0 0" radius="1" height="1" material="color: blue;" position="0 0.5 0"></a-cylinder>
+
+    <!-- Esfera inferior azul -->
+    <a-sphere id="esfera_azul_inferior" geometry="primitive: sphere" color="#0000FF" position="0 0 0"></a-sphere>
+
+</a-entity>
+
+
+
+      <!-- Virus red -->
+      <a-sphere position="-3 1 -5" radius="1"  material="color:#BB0000;"  grab-options="scalable" class="raycaster-target" dynamic-body grabbable stretchable draggable droppable><!-- grabbable dynamic-body="linearDamping: 0.05; mass: 1" --></a-sphere>
+
+      <!-- Virus yellow -->
+      <a-sphere position="-1 1 -5" radius="1"  material="color:#BBBB00;"  grab-options="scalable" class="raycaster-target" dynamic-body grabbable stretchable draggable droppable></a-sphere>
+
+      <!-- Virus red derecha -->
+      <a-sphere  position="1 2 -5" radius="1" color="red" grab-options="scalable" class="raycaster-target" dynamic-body grabbable stretchable draggable droppable></a-sphere>
+      
+
+      <!--
+      <a-entity geometry="primitive: sphere" color="red" dynamic-body grabbable stretchable draggable droppable position="3 1 -5"></a-entity>-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+
+      <!-- Ground -->
+      <a-plane src="" color="grey"  scale="50 50 1" repeat="5 5 1" rotation="-90 0 0" static-body></a-plane>
+
+    </a-scene>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+<!--       <a-box color="#AA0000" scale="2 3 1.5" position="3 4 -5" static-body grabbable stretchable draggable droppable> </a-box> -->
+<!--   <a-box color="#AA0000" scale="2 3 1.5"  position="3 0 -5" static-body grabbable stretchable draggable droppable> </a-box>-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <script>
+        // Función para eliminar elementos de color azul
+        function eliminarElementosAzules() {
+          // Seleccionamos todas las esferas de la escena
+          const elementos = document.querySelectorAll('a-sphere');
+          
+          // Iteramos sobre cada esfera
+          elementos.forEach(function(elemento) {
+            // Verificamos el color del elemento
+            if (elemento.getAttribute('color') === 'blue') {
+              // Si el color es azul, lo eliminamos
+              elemento.remove();
+            }
+          });
+        }
+  
+  
+          eliminarElementosAzules();
+     
+      </script>
+
+
+      <script>
+        // Función para eliminar esferas consecutivas con el mismo color
+        function eliminarEsferasConsecutivas() {
+          alert("Entro");  // Verifica si la función es llamada
+  
+          // Seleccionamos todas las esferas de la escena
+          const elementos = Array.from(document.querySelectorAll('a-sphere'));
+          
+          // Recorrer todas las esferas en orden inverso
+          for (let i = elementos.length - 1; i >= 3; i--) {
+            const color1 = elementos[i].getAttribute('color');
+            const color2 = elementos[i - 1].getAttribute('color');
+            const color3 = elementos[i - 2].getAttribute('color');
+            const color4 = elementos[i - 3].getAttribute('color');
+  
+            // Si las tres esferas consecutivas tienen el mismo color, las eliminamos
+            if (color1 === color2 && color2 === color3 && color3 === color4) {
+              elementos[i].remove();
+              elementos[i - 1].remove();
+              elementos[i - 2].remove();
+              elementos[i - 3].remove();
+            }
+          }
+        }
+  
+
+          eliminarEsferasConsecutivas();
+/*
+
+              var esfera_roja_superior = document.getElementById("esfera_roja_superior");
+              esfera_roja_superior.remove();
+
+              var cilindro_superior_rojo = document.getElementById("cilindro_rojo_superior");
+              cilindro_superior_rojo.remove();
+
+              var cilindro_inferior_azul = document.getElementById("cilindro_azul_inferior");
+              cilindro_inferior_azul.remove();
+
+              var esfera_inferior_azul = document.getElementById("esfera_azul_inferior");
+              esfera_inferior_azul.remove();*/
+
+      </script>

@@ -1,0 +1,114 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VR Scene with Objects</title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/supermedium/super-hands@latest/dist/super-hands.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aframe-physics-system@4.2.0/dist/aframe-physics-system.min.js"></script>
+  </head>
+
+  <body>
+    <a-scene physics="debug: true">
+      <!-- Assets section (you can add assets here) -->
+      <a-assets></a-assets>
+
+      <!-- Camera with look-controls -->
+      <a-entity camera look-controls position="10 0 5"></a-entity>
+
+      <!-- Left hand controller with super-hands -->
+      <a-entity 
+        sphere-collider="objects: a-box" 
+        super-hands 
+        hand-controls="hand: left" 
+        position="0 1 0">
+      </a-entity>
+
+      <!-- Right hand controller with super-hands -->
+      <a-entity 
+        sphere-collider="objects: a-box" 
+        super-hands 
+        hand-controls="hand: right" 
+        position="0 1 0">
+      </a-entity>
+
+      <!-- Ground Plane -->
+      <a-plane 
+        color="#B4B3B4" 
+        width="20" 
+        height="20" 
+        position="0 0 -15" 
+        rotation="0 0 0">
+      </a-plane>
+
+      <!-- Virus blue -->
+      <a-sphere 
+        physx-body="type: dynamic;" 
+        physx-material="restitution: 0.8;" 
+        raycaster-target="canGrab: true;" 
+        physics-grab="" 
+        position="-8 6 -15" 
+        radius="0.5" 
+        material="color:#BB0000;" 
+        grab-options="scalable" 
+        class="raycaster-target">
+      </a-sphere>
+
+      <!-- Virus yellow -->
+      <a-sphere 
+        physx-body="type: dynamic;" 
+        physx-material="restitution: 0.8;" 
+        raycaster-target="canGrab: true;" 
+        physics-grab="" 
+        hoverable 
+        grabbable 
+        stretchable 
+        draggable 
+        droppable 
+        position="-5 3 -15" 
+        radius="0.5" 
+        material="color:#BBBB00;" 
+        grab-options="scalable" 
+        class="raycaster-target">
+      </a-sphere>
+
+      <!-- Virus red -->
+      <a-sphere 
+        physx-body="type: dynamic;" 
+        physx-material="restitution: 0.8;" 
+        raycaster-target="canGrab: true;" 
+        physics-grab="" 
+        position="-2 0 -15" 
+        radius="0.5" 
+        material="color:#0000BB;" 
+        grab-options="scalable" 
+        class="raycaster-target">
+      </a-sphere>
+
+      <!-- Container entity with boxes -->
+      <a-entity id="container" 
+                grabbable 
+                stretchable 
+                draggable 
+                droppable 
+                position="3 1.5 -3" 
+                dynamic-body>
+        <!-- Red Box -->
+        <a-box 
+          hoverable 
+          color="red" 
+          position="0 0 0">
+        </a-box>
+
+        <!-- Blue Box (displaced relative to the red box) -->
+        <a-box 
+          hoverable 
+          color="blue" 
+          position="0 1 0">
+        </a-box>
+      </a-entity>
+    </a-scene>
+  </body>
+</html>

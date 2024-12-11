@@ -1,0 +1,277 @@
+
+
+<!--
+        <a-sphere id="sphere1" position="-2.4 2.75 -20" color="yellow" radius="0.5"  
+        animation="property: position; to: -2.4 2.75 0; dur: 15000; easing: linear;" ></a-sphere>
+
+        <a-box id="caja1"      position="-1.2 2.75 -20" color="green" obb-collider 
+        animation="property: position; to: -1.2 2.75 0; dur: 15000; easing: linear;"></a-box>
+
+        <a-sphere id="sphere2" position="0 2.75 -20" color="blue" radius="0.5"  
+        animation="property: position; to: 0 2.75 0; dur: 15000; easing: linear;" ></a-sphere>
+
+        <a-box id="caja2"      position="1.2 2.75 -20" color="red" obb-collider 
+        animation="property: position; to: 1.2 2.75 0; dur: 15000; easing: linear;"></a-box>-->
+
+        <!--
+        <a-box position="-4.8 1 -20" rotation="0 0 0" color="pink"></a-box>
+        <a-box position="-4.8 2 -20" rotation="0 0 0" color="pink"></a-box>
+        <a-box position="-4.8 3 -20" rotation="0 0 0" color="pink"></a-box>
+        <a-box position=" -3.6 3 -20" rotation="0 0 0" color="pink"></a-box>-->
+<html>
+<head>
+    <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-environment-component@1.3.3/dist/aframe-environment-component.min.js"></script>
+</head>
+
+<body>
+    <a-scene obb-collider="showColliders: false">
+        <!--<a-entity environment="preset: tron"></a-entity>-->
+  
+        <a-plane position="0 1 -10" width="10" height="20" rotation="-90 0" color="#CCC"></a-plane>
+        <!--<a-plane id="player" position="0 1 -1" width="10" height="20" rotation="0 180 0" color="blue" obb-collider></a-plane>-->
+        <a-plane id="player" position="0 1 -0.1" width="10" height="0.05" rotation="0 0" color="blue" obb-collider></a-plane>
+        
+        <a-sphere id="sphere1" position="-2.4 1.5 -20" obb-collider color="red" radius="0.5"  
+        animation="property: position; to: -2.4 1.5 0; dur: 15000; easing: linear;" ></a-sphere>
+
+        <a-box id="caja1"      position="-1.2 1.5 -20" obb-collider color="yellow"  
+        animation="property: position; to: -1.2 1.5 0; dur: 15000; easing: linear;"></a-box>
+
+        <a-sphere id="sphere2" position="0 1.5 -20" obb-collider color="green" radius="0.5"  
+        animation="property: position; to: 0 1.5 0; dur: 15000; easing: linear;" ></a-sphere>
+
+        <a-box id="caja2"      position="1.2 1.5 -20" obb-collider color="blue" 
+        animation="property: position; to: 1.2 1.5 0; dur: 15000; easing: linear;"></a-box>
+
+
+
+
+        <a-light type="ambient" position="0 0 0" color="#fff"></a-light>
+
+        <a-camera id="player2" obb-collider>        
+            <a-cursor></a-cursor>            
+
+            <a-text id="vida" value="-" color="red" position="-1 1.5 -2"></a-text>
+
+            <a-text id="puntos" value="-" color="green" position="-1 1.3 -2"></a-text>
+
+                  <!-- Texto para mostrar el contador -->
+            <a-text id="contador" value="10" position="0 2 -5" color="#FFF" align="center" font="mozillavr" scale="3 3 3"></a-text>
+      
+
+        </a-camera>
+
+
+    </a-scene>
+
+
+
+
+    <script>
+        var puntuacion = 0;
+
+        var sphere1 = document.getElementById("sphere1");
+        var caja1 = document.getElementById("caja1");
+        var sphere2 = document.getElementById("sphere2");
+        var caja2 = document.getElementById("caja2");
+
+
+        var player = document.getElementById("player");
+        var vida = document.getElementById("vida");
+        var puntos = document.getElementById("puntos");
+
+        var contador = document.getElementById("contador");
+
+
+        var eliminadoGreen = false;
+        var eliminadoYellow = false;
+        var eliminadoBlue = false;
+        var eliminadoRed = false;
+
+        function busquedaColor(){
+            if(eliminadoGreen == true && eliminadoYellow == true && eliminadoBlue == true ){
+                return "red";
+            }else if(eliminadoGreen == true && eliminadoYellow == true){
+                color = "blue";
+            }else if(eliminadoGreen == true){
+                color = "yellow";
+            }else{
+                color = "green";
+            }
+            return color;
+        }
+        var color = busquedaColor();
+
+        
+
+        sphere1.addEventListener("mouseenter", () => {
+            sphere1.setAttribute("color", "grey");
+            sphere1.setAttribute("radius", 0.75);
+        });
+
+        sphere1.addEventListener("mouseleave", () => {
+
+            sphere1.setAttribute("radius", 0.5);
+
+            if(eliminadoRed == false){
+                sphere1.setAttribute("color", "red");    
+            }
+        
+        });
+
+
+
+   
+        sphere1.addEventListener("click", function (event){
+            if(color === "red"){
+            this.remove();
+            restar("Esfera roja", 3);
+            alert("Puntuación final: " + puntuacion + " puntos");
+        }else{
+            vida.setAttribute("value", "*Figura incorrecta");   
+            this.setAttribute("color", 'black' );
+            this.setAttribute("animation__position", "property: position; to: -1.2 1.5 0; dur: 1000; easing: linear;");
+            perdida(this);
+        }
+        eliminadoRed = true;
+    });
+    
+        caja1.addEventListener("click", function (event){
+            if(color === "yellow"){
+            this.remove();
+            color = "blue";  
+
+            restar("Caja amarilla", 3);
+            }else{
+                vida.setAttribute("value", "*Figura incorrecta");   
+                this.setAttribute("color", 'black' );
+                this.setAttribute("animation__position", "property: position; to: -1.2 1.5 0; dur: 1000; easing: linear;");
+                perdida(this);
+            }
+
+            eliminadoYellow = true;
+        });
+    
+
+        sphere2.addEventListener("click", function (event){
+            if(color === "green"){
+            this.remove();
+            restar("Esfere verde", 3);
+            }else{
+
+            }
+            eliminadoGreen = true;
+            color = busquedaColor();
+        });
+
+        caja2.addEventListener("click", function (event){
+            if(color === "blue"){
+            this.remove();
+            color="red";
+            restar("Caja azul", 3);
+            }else{
+                vida.setAttribute("value", "*Figura incorrecta");   
+                this.setAttribute("color", 'black' );
+                this.setAttribute("animation__position", "property: position; to: 1.2 1.5 0; dur: 1000; easing: linear;");
+                perdida(this);  
+            }    
+            eliminadoBlue = true;
+        });
+        
+
+function restar(texto, puntosFigura){
+    //vida.setAttribute("value", vida.getAttribute("value")-1);
+    vida.setAttribute("value", texto + " eliminada, +" + puntosFigura + " puntos.");
+
+    puntuacion = puntuacion + puntosFigura;
+    puntos.setAttribute("value", puntuacion + " puntos." );
+}
+
+
+function perdida(elemento){
+    // Espera 1 segundo (1000 ms)
+    setTimeout(function() {
+        console.log("Ha pasado 1 segundo");
+        //alert("Ha pasado 1se.")
+        elemento.remove();
+    }, 1000);
+    color = busquedaColor();
+}
+
+function retry(){
+        alert("Re-Tryww");                  // console.log("Re-Try");
+        location.reload(true);            // Recargar la página desde el servidor
+}
+
+/*
+player.addEventListener("obbcollisionstarted", function (event){
+    alert("Re-Tryqq");                 // console.log("Re-Try");
+    location.reload(true);            // Recargar la página desde el servidor
+});
+*/
+
+
+
+
+
+sphere1.addEventListener("obbcollisionstarted", function (event){
+    if(sphere1.getAttribute("color") == "red"){
+        retry();
+    }
+});
+
+caja1.addEventListener("obbcollisionstarted", function (event){
+    if(caja1.getAttribute("color") == "yellow"){
+        retry();
+    }
+});
+
+sphere2.addEventListener("obbcollisionstarted", function (event){
+    if(sphere2.getAttribute("color") == "green"){
+        retry();
+    }
+});
+
+caja2.addEventListener("obbcollisionstarted", function (event){
+    if(caja2.getAttribute("color") == "blue"){
+        retry();
+    }
+});
+
+
+
+
+ // Inicialización del contador
+ let contador = 10;
+      const textoContador = document.getElementById('contador');
+
+      // Función que actualiza el contador cada segundo
+      const intervalo = setInterval(() => {
+        if (contador > 0) {
+          contador--;
+          textoContador.setAttribute('value', contador.toString());  // Actualiza el texto en el DOM de A-Frame
+        } else {
+          clearInterval(intervalo);  // Detiene el contador
+          alert('¡El contador ha llegado a cero!');
+          contador.setAttribute("value", "Contador acabado" );
+        }
+      }, 1000);  // Actualiza cada 1 segundo
+
+
+
+// click
+// mover la cámara
+// figuras, y todo lo que haga falta
+
+        /*
+        player.addEventListener("obbcollisionstarted", function (event){
+            alert("Evento");
+            console.log("Evento");
+            vida.setAttribute("value", vida.getAttribute("value")-1)
+        });*/
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+<head>
+    <title>Color Puzzle</title>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.misc.min.js"></script>
+    <script src="https://unpkg.com/super-hands@^3.0.3/dist/super-hands.min.js"></script>
+  </head>
+  
+  <body>
+    <a-scene>
+      <a-assets></a-assets>
+      <a-entity>
+        <a-camera></a-camera>
+        <a-entity sphere-collider="objects: a-box" super-hands hand-controls="hand: left"></a-entity>
+        <a-entity sphere-collider="objects: a-box" super-hands hand-controls="hand: right"></a-entity>
+      </a-entity>
+        <a-box hoverable grabbable stretchable draggable droppable color="blue" position="-2 0 -3"></a-box>
+        <a-box hoverable grabbable stretchable draggable droppable color="red" position="0 0 -3"></a-box>
+        <a-box hoverable grabbable stretchable draggable droppable color="green" position="2 0 -3"></a-box>
+        <a-box hoverable grabbable stretchable draggable droppable color="blue" position="-2 1.5 -3"></a-box>
+
+        <a-sphere physx-body="type: dynamic;" physx-material="restitution: 0.8;" raycaster-target="canGrab: true;" physics-grab="" 
+        
+        position="0 1.5 -3" radius="0.5" material="src:#ball; color:violet;" geometry="" grab-options="scalable" class="raycaster-target">
+        </a-sphere>
+
+
+        <!--<a-box hoverable grabbable stretchable draggable droppable color="red" position="0 1.5 -3"></a-box>-->
+        <a-box hoverable grabbable stretchable draggable droppable color="green" position="2 1.5 -3"></a-box>
+        <a-box hoverable grabbable stretchable draggable droppable color="blue" position="-2 3 -3"></a-box>
+        <a-box hoverable grabbable stretchable draggable droppable color="red" position="0 3 -3"></a-box>
+        <a-box hoverable grabbable stretchable draggable droppable color="green" position="2 3 -3"></a-box>
+        <a-plane color="blue" width="3" height="3" position="-3 0 0" rotation="-90 0 0"></a-plane>
+        <a-plane color="red" width="3" height="3" position="3 0 0" rotation="-90 0 0"></a-plane>
+        <a-plane color="green" width="3" height="3" position="0 0 3" rotation="-90 0 0"></a-plane>
+
+    </a-scene>
+  </body>
