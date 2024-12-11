@@ -2,40 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <script src="https://cdn.rawgit.com/jeromeetienne/ar.js/1.7.7/aframe/build/aframe-ar.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
 
-    <title>AR Page</title>
-
-    <style>
-        body {
-            margin: 0;
-            overflow: hidden;
-        }
-
-        a-scene {
-            width: 100%;
-            height: 100%;
-        }
-
-        /* Agregar esta clase para asegurar que no haya zoom */
-        a-entity[camera] {
-            position: 0 0 0;
-            zoom: 1;
-        }
-    </style>
+    <title>Document</title>
 </head>
 <body>
-    <a-scene embedded arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
-        <!-- Marcador Hiro -->
-        <a-marker preset="hiro">
-            <a-box position="0 0 -4" rotation="0 0 0" color="red"></a-box>
-            <a-box position="0 1 -2" rotation="0 0 0" color="yellow"></a-box>
-        </a-marker>
+    
+    </body style="margin: 0; overflow: hidden">
 
-        <!-- Asegurar que la cámara no tiene zoom ni distorsión -->
-        <a-entity camera="fov: 80; active: true" position="0 0 0"></a-entity>
+    <a-scene embedded arjs="detectionMode:mono_and_matrix;matrixCodeType:3x3_PARITY65">
+        <a-marker preset="hiro">
+            <a-box position="0 0 -4" rotation="0 0 0 " color="red"></a-box>
+            <a-box position=" 0 1 -2" rotation="0 0 0" color="yellow"></a-box>
+
+            
+        </a-marker>
+        <a-entity camera="fov: 10;"></a-entity>
     </a-scene>
+
 </body>
 </html>
