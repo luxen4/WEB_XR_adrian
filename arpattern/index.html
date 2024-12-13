@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://cdn.rawgit.com/jeromeetienne/ar.js/1.7.7/aframe/build/aframe-ar.min.js"></script>
+
+    <title>Document</title>
+</head>
+<body>
+    
+    </body style="margin: 0; overflow: hidden">
+
+    <a-scene embedded arjs>
+
+        <a-marker preset="hiro">
+            <a-box position="0 0 0" rotation="0 0 0 " color="red"></a-box>
+        </a-marker>
+
+        <a-marker preset="kanji">
+            <a-box position="0 0 0" rotation="0 0 0 " color="green"></a-box>
+        </a-marker>
+
+        <a-marker type="pattern"  preset="custom"  url="./patterns/pattern-0.patt">
+            <a-box position="0 0 0" rotation="0 0 0 " color="red"></a-box>
+        </a-marker>
+
+        <a-marker type="pattern"  preset="custom"  url="./patterns/pattern-1.patt">
+            <a-box position="0 0 0" rotation="0 0 0 " color="yellow"></a-box>
+        </a-marker>
+
+        <a-marker type="pattern"  preset="custom"  url="./patterns/pattern-2.patt">
+            <a-box position="0 0 0" rotation="0 0 0 " color="green"></a-box>
+        </a-marker>
+
+        <a-marker type="pattern"  preset="custom"  url="./patterns/pattern-3.patt">
+            <a-box position="0 0 0" rotation="0 0 0 " color="brown"></a-box>
+        </a-marker>
+
+        <a-marker type="pattern"  preset="custom"  url="./patterns/pattern-4.patt">
+            <a-box position="0 0 0" rotation="0 0 0 " color="orange"></a-box>
+        </a-marker>
+
+        <a-marker type="pattern"  preset="custom"  url="./patterns/pattern-5.patt">
+            <a-box position="0 0 0" rotation="0 0 0 " color="purple"></a-box>
+        </a-marker>
+
+        <a-marker type="pattern"  preset="custom"  url="./patterns/pattern-6.patt">
+            <a-box position="0 0 0" rotation="0 0 0 " color="lime"></a-box>
+        </a-marker>
+
+        <a-marker type="pattern"  preset="custom"  url="./patterns/pattern-7.patt">
+            <a-box position="0 0 0" rotation="0 0 0 " color="black"></a-box>
+        </a-marker>
+
+        <a-marker type="pattern"  preset="custom"  url="./patterns/pattern-8.patt">
+            <a-box position="0 0 0" rotation="0 0 0 " color="white"></a-box>
+        </a-marker>
+
+        <a-marker type="pattern"  preset="custom"  url="./patterns/pattern-9.patt">
+            <a-box position="0 0 0" rotation="0 0 0 " color="yellow"></a-box>
+        </a-marker>
+
+
+
+        <a-entity camera ></a-entity>
+    </a-scene>
+
+</body>
+</html>
+
+
+<!-- 
+Markers
+    https://github.com/nicolocarpignoli/artoolkit-barcode-markers-collection/tree/master/3x3
+
+Generador de .patt
+    https://jeromeetienne.github.io/AR.js/three.js/examples/marker-training/examples/generator.html-->
