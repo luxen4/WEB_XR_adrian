@@ -13,7 +13,29 @@
     </body style="margin: 0; overflow: hidden">
 
     <a-scene embedded arjs>
-<!--
+
+        <a-marker preset="hiro">
+            <a-box position="0 0 0" rotation="0 0 0 " color="red"></a-box>
+        </a-marker>
+
+
+        <a-marker type="pattern"  preset="custom"  url="./pattern-8.patt">
+            <a-box position="0 0 0" rotation="0 0 0 " color="yellow"></a-box>
+        </a-marker>
+
+
+
+        <a-entity camera ></a-entity>
+    </a-scene>
+
+</body>
+</html>
+<!-- Generador de .patt
+ https://jeromeetienne.github.io/AR.js/three.js/examples/marker-training/examples/generator.html-->
+
+
+
+ <!--
         <a-marker preset="hiro">
             <a-box position="0 0 0" rotation="0 0 0 " color="red"></a-box>
         </a-marker>
@@ -58,26 +80,3 @@
             <a-box position="0 0 0" rotation="0 0 0 " color="yellow"></a-box>
         </a-marker>
     -->
-
-
-        <a-marker type="pattern"  preset="custom"  url="./patterns/pattern-8.patt">
-            <a-box position="0 0 0" rotation="0 0 0 " color="white"></a-box>
-        </a-marker>
-
-
-
-
-
-        <a-entity camera ></a-entity>
-    </a-scene>
-
-</body>
-</html>
-
-
-<!-- 
-Markers
-    https://github.com/nicolocarpignoli/artoolkit-barcode-markers-collection/tree/master/3x3
-
-Generador de .patt
-    https://jeromeetienne.github.io/AR.js/three.js/examples/marker-training/examples/generator.html-->
