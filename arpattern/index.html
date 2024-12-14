@@ -12,8 +12,16 @@
     
     </body style="margin: 0; overflow: hidden">
 
+    <!-- Contenedor del input -->
+    <div id="input-container">
+        <input type="text" placeholder="Escribe algo aquí..." />
+    </div>
+
+
+
+
     <a-scene embedded arjs>
-<input type="text">
+
         <a-marker preset="hiro">
             <a-box position="0 0 0" rotation="0 0 0 " color="red"></a-box>
         </a-marker>
@@ -86,11 +94,25 @@
         <a-marker preset="kanji">
             <a-box position="0 0 0" rotation="0 0 0 " color="green"></a-box>
         </a-marker>
-
-
-
-
-
-
-
     -->
+
+
+
+    <style>
+        /* Estilos para el input y posición de la UI */
+        #input-container {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            text-align: center;
+        }
+        input {
+            padding: 10px;
+            font-size: 16px;
+            width: 300px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
