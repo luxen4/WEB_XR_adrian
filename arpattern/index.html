@@ -12,22 +12,16 @@
 
 <body style="margin: 0; overflow: hidden">
 
-
-    <!--<div id="form-container">
+    <div id="form-container">
         <h2>Formulario de Pokémon</h2>
        
         <form id="pokemon-form">
 
-
-
-             Contenedor del input 
             <div id="input-container">
                 <input type="text" placeholder="Escribe algo aquí..." />
-            </div>-->
+            </div>
 
 
-
-            <!-- Contenedor del select -->
             <div id="select-container">
                 <select>
                     <option value="pikachu">Pikachu</option>
@@ -37,6 +31,16 @@
                     <option value="eevee">Eevee</option>
                 </select>
             </div>
+
+
+            <button type="button" onclick="submitForm()">Enviar</button>
+        </form>
+
+
+        <div id="result"></div>
+    </div>
+
+
 
 
 
@@ -106,15 +110,6 @@
 
                 <a-entity camera></a-entity>
             </a-scene>
-
-            <!--<button type="button" onclick="submitForm()">Enviar</button>
-        </form>-->
-
-
-        <!-- Resultado de la selección 
-        <div id="result"></div>-->
-
-    </div>
 
 </body>
 
