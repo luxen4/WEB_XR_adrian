@@ -85,7 +85,7 @@
             <div id="form-container">
                 <h2>Formulario de Pokémon</h2>
                
-                <form id="pokemon-formr">
+                <form id="pokemon-form">
         
                     <div id="input-container">
                         <input type="text" placeholder="Escribe tu nombre..." />
@@ -210,8 +210,8 @@
         alert("entro");
     
         // Obtener los valores del formulario
-        var name = document.getElementById("input-container").value;
-        var pokemon = document.getElementById("select-container").value;
+        var name = document.getElementById("input-container").value; alert(name);
+        var pokemon = document.getElementById("select-container").value; alert(pokemon);
 
         // Verificar si el campo del nombre está vacío
         if (name === "") {
