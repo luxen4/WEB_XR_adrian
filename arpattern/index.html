@@ -12,36 +12,6 @@
 
 <body style="margin: 0; overflow: hidden">
 
-    <div id="form-container">
-        <h2>Formulario de Pokémon</h2>
-       
-        <form id="pokemon-form">
-
-            <div id="input-container">
-                <input type="text" placeholder="Escribe algo aquí..." />
-            </div>
-
-
-            <div id="select-container">
-                <select>
-                    <option value="pikachu">Pikachu</option>
-                    <option value="charmander">Charmander</option>
-                    <option value="bulbasaur">Bulbasaur</option>
-                    <option value="squirtle">Squirtle</option>
-                    <option value="eevee">Eevee</option>
-                </select>
-            </div>
-
-
-            <button type="button" onclick="submitForm()">Enviar</button>
-        </form>
-
-
-        <div id="result"></div>
-    </div>
-
-
-
 
 
             <a-scene embedded arjs>
@@ -111,6 +81,35 @@
                 <a-entity camera></a-entity>
             </a-scene>
 
+
+            <div id="form-containerrrrrrrr">
+                <h2>Formulario de Pokémon</h2>
+               
+                <form id="pokemon-formrrrrr">
+        
+                    <div id="input-container">
+                        <input type="text" placeholder="Escribe algo aquí..." />
+                    </div>
+        
+        
+                    <div id="select-container">
+                        <select>
+                            <option value="pikachu">Pikachu</option>
+                            <option value="charmander">Charmander</option>
+                            <option value="bulbasaur">Bulbasaur</option>
+                            <option value="squirtle">Squirtle</option>
+                            <option value="eevee">Eevee</option>
+                        </select>
+                    </div>
+        
+        
+                    <button type="button" onclick="submitForm()">Enviar</button>
+                </form>
+        
+        
+                <div id="result"></div>
+            </div>
+
 </body>
 
 </html>
@@ -153,7 +152,7 @@
 
     #select-container {
         position: absolute;
-        top: 50px;
+        top: 80px;
         left: 50px;
         transform: translateX(-50%);
         z-index: 10;
