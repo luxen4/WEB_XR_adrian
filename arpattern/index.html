@@ -4,37 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <script src="https://cdn.rawgit.com/jeromeetienne/ar.js/1.7.7/aframe/build/aframe-ar.min.js"></script>
 
     <title>Document</title>
+
+    <link rel="stylesheet" type="text/css" href="./css/styles.css">    
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://cdn.rawgit.com/jeromeetienne/ar.js/1.7.7/aframe/build/aframe-ar.min.js"></script>
+    <script src="./js/aframe-ar.js"></script>
 </head>
 
 
-
-<script>
-    // Función para manejar el envío del formulario
-    function submitForm() {
-        alert("entro");
-    
-        // Obtener los valores del formulario
-        var name = document.getElementById("my-name").value; alert(name);
-        var pokemon = document.getElementById("pokemon-select").value; alert(pokemon);
-
-        // Verificar si el campo del nombre está vacío
-        if (name === "") {
-            alert("Por favor, ingresa tu nombre.");
-            return;
-        }
-
-        // Mostrar los resultados
-        var result = document.getElementById("result");
-        result.innerHTML = `¡Hola, ${name}! Has seleccionado a ${pokemon} como tu Pokémon favorito.`;
-    }
-</script>
-
 <body style="margin: 0; overflow: hidden">
-
 
 
             <a-scene embedded arjs>
@@ -43,8 +23,11 @@
                     <a-box position="0 0 0" rotation="0 0 0 " color="red"></a-box>
                 </a-marker>
 
+
+
                 <a-marker type="pattern" preset="custom" url="./patterns/pattern-0.patt">
-                    <a-box position="0 0 0" rotation="0 0 0 " color="red"></a-box>
+                    <a-entity id="pokemon" gltf-model="url(./gbl/sandslash.glb)" scale="0.5 0.5 0.5" position="0 0 0"
+                        rotation="0 -90 0" touch-move></a-entity>
                 </a-marker>
 
                 <a-marker type="pattern" preset="custom" url="./patterns/pattern-1.patt">
@@ -84,21 +67,29 @@
 
                 <a-marker type="pattern" preset="custom" url="./patterns/pattern-8.patt">
                     <a-entity id="pokemon" gltf-model="url(./gbl/squirtle.glb)" scale="0.5 0.5 0.5" position="0 0 0"
-                        rotation="0 -90 0" touch-move></a-entity>
+                        rotation="0 0 0" touch-move></a-entity>
                 </a-marker>
+
+
+
 
                 <a-marker preset="hiro">
-                    <a-box position="0 0 0" rotation="0 0 0 " color="red"></a-box>
+                    <a-entity id="pokemon" gltf-model="url(./gbl/geodude.glb)" scale="0.5 0.5 0.5" position="0 0 0"
+                        rotation="0 0 0" touch-move></a-entity>
                 </a-marker>
 
-                <a-marker type="pattern" preset="custom" url="./patterns/pattern-charmander.patt">
+                <a-marker type="pattern" preset="custom" url="./patterns/pattern-10.patt">
                     <a-entity id="pokemon" gltf-model="url(./gbl/charmander.glb)" scale="0.5 0.5 0.5" position="0 0 0"
-                        rotation="0 -90 0" touch-move></a-entity>
+                        rotation="0 0 0" touch-move></a-entity>
                 </a-marker>
 
                 <a-marker preset="kanji">
-                    <a-box position="0 0 0" rotation="0 0 0 " color="green"></a-box>
+                    <a-entity id="pokemon" gltf-model="url(./gbl/gengar.glb)" scale="0.5 0.5 0.5" position="0 0 0"
+                        rotation="0 0 0" touch-move></a-entity>
                 </a-marker>
+
+
+
 
 
                 <a-entity camera></a-entity>
@@ -117,11 +108,20 @@
         
                     <div id="select-container">
                         <select id="pokemon-select">
-                            <option value="pikachu">Pikachu</option>
-                            <option value="charmander">Charmander</option>
-                            <option value="bulbasaur">Bulbasaur</option>
+                            <option value="sandslash">Sandslash</option>
+                            <option value="abra">Abra</option>
+                            <option value="magicarp">Magicarp</option>
+                            <option value="poplio">Poplio</option>
+                            <option value="caterpie">Caterpie</option>
+                            <option value="km_lugia">km_lugia</option>
+                            <option value="nosealope">Nosealope</option>
+                            <option value="beedrill">Beedrill</option>
                             <option value="squirtle">Squirtle</option>
-                            <option value="eevee">Eevee</option>
+
+                            <option value="geodude">Geodude</option>
+                            <option value="charmander">Charmander</option>
+                            <option value="gengar">Gengar</option>
+
                         </select>
                     </div>
         
@@ -130,97 +130,34 @@
                 </form>
         
         
-                <div id="result"></div>
+                <div >
+                    <h3 id="result">
+
+                    </h3>
+                </div>
             </div>
 
 </body>
 
 </html>
+
+
+
+
+
+<!-- 
+Pokemons 3D
+https://sketchfab.com/search?q=pokemon&type=models -->
+
 <!-- Generador de .patt
- https://jeromeetienne.github.io/AR.js/three.js/examples/marker-training/examples/generator.html-->
+ https://jeromeetienne.github.io/AR.js/three.js/examples/marker-training/examples/generator.html
+ Hacer las capturas de los cuadrados.
+ -->
+
 
 
 
 <!--
-        <a-marker preset="hiro">
-            <a-box position="0 0 0" rotation="0 0 0 " color="red"></a-box>
-        </a-marker>
-
-        <a-marker preset="kanji">
-            <a-box position="0 0 0" rotation="0 0 0 " color="green"></a-box>
-        </a-marker>
-    -->
-
-
-
-<style>
-
-    #input-container {
-        position: absolute;
-        top: 20px;
-        left: 150px;
-        transform: translateX(-50%);
-        z-index: 10;
-        text-align: center;
-    }
-
-    input {
-        padding: 10px;
-        font-size: 16px;
-        width: 250px;
-        border: 2px solid #ccc;
-        border-radius: 5px;
-    }
-
-
-    #select-container {
-        position: absolute;
-        top: 80px;
-        left: 150px;
-        transform: translateX(-50%);
-        z-index: 10;
-        text-align: center;
-    }
-
-    select {
-        padding: 10px;
-        font-size: 16px;
-        width: 250px;
-        border: 2px solid #ccc;
-        border-radius: 5px;
-    }
-
-
-    button:hover {
-        background-color: #45a049;
-    }
-
-
-    #result {
-        margin-top: 150px; 
-        font-size: 18px;
-        text-align: center;
-        position: absolute; 
-        bottom: 100px; 
-        left: 50px; 
-    }
-          
-          
-          
-
-    button {
-        padding: 10px 20px;
-        font-size: 16px;
-        background-color: #4CAF50;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        position: absolute; /* Posición absoluta */
-        bottom: 20px; /* Coloca el botón a 20px de la parte inferior */
-        left: 50%; /* Posición horizontal al 50% del contenedor */
-        transform: translateX(-50%); /* Corrección para centrarlo */
-    }
-   
-
-</style>
+<a-marker type="pattern" preset="custom" url="./patterns/pattern-0.patt">
+    <a-box position="0 0 0" rotation="0 0 0 " color="red"></a-box>
+</a-marker>-->
